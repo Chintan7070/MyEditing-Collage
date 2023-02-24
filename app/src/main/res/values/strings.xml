@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyEditing</string>
+    <string name="text_images">%1$d Images</string>
+
+    <string name="prompt.border">Border</string>
+    <string name="prompt.edit">Edit</string>
+    <string name="prompt.flip.horizontal">Image</string>
+    <string name="prompt.flip.vertical">Flip</string>
+    <string name="prompt.playground">Playground</string>
+    <string name="prompt.replace">Replace</string>
+    <string name="prompt.rotate">Rotate</string>
+    <string name="prompt.save">Save</string>
+    <string name="prompt.select.layout">Select Layout</string>
+    <string name="prompt_save_failed">Save failed!</string>
+    <string name="prompt_save_success">Save success!</string>
+    <string name="prompt_share">Share</string>
+    <string name="prompt_share_failed">Share failed!</string>
+    <string name="promptcorner">Flip</string>
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.photo.editorapp.picadot.views.SquareLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:padding="@dimen/_5sdp">
+
+    <androidx.cardview.widget.CardView
+        android:background="#232323"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_7sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.photo.editorapp.picadot.views.SquareLayout
+            android:background="#232323"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+
+                android:foreground="@drawable/click_ripple"
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:id="@+id/grid_item_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentBottom="true"
+                android:alpha="1.0"
+                android:background="@drawable/background_gradient"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="folder"
+                    android:id="@+id/txtFieldName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_7sdp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewSelectedItemCount"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:background="@drawable/background_selected"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+        </com.photo.editorapp.picadot.views.SquareLayout>
+    </androidx.cardview.widget.CardView>
+</com.photo.editorapp.picadot.views.SquareLayout>
