@@ -87,11 +87,18 @@ class MainActivity : AppCompatActivity() {
 
         gallery_next.setOnClickListener {
             if (selectedImageList.size >= 2) {
-                val intent = Intent(this, CollageEditActivity::class.java)
-                val args = Bundle()
-                args.putSerializable("ARRAYLIST", selectedImageList as Serializable)
-                intent.putExtra("BUNDLE", args)
-                startActivity(intent)
+
+                    val intent = Intent(this, CollageEditActivity::class.java)
+                    val args = Bundle()
+                    if (selectedImageList.size <= 3){
+                        intent.putExtra("type",0)
+                    }else{
+                        intent.putExtra("type",1)
+                    }
+                    args.putSerializable("ARRAYLIST", selectedImageList as Serializable)
+                    intent.putExtra("BUNDLE", args)
+                    startActivity(intent)
+
             }else{
                 Toast.makeText(this@MainActivity,"Please select minimum 2 images",Toast.LENGTH_SHORT).show()
             }
@@ -231,27 +238,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSelectesImageList(
+
         alImages: java.util.ArrayList<RearImagesModel>,
         folderPosition: Int,
         position: Int
     ) {
-        updateTxtTotalImage()
-        selectedImageList.add(alImages[folderPosition].imagePath[position])
-        val inflate = LayoutInflater.from(this).inflate(R.layout.selected_images, null, false)
-        val imageView = inflate.selectedImages
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        inflate.imageView_delete.setOnClickListener {
+        if (selectedImageList.size <= 8){
 
-            selected_image_linear.removeView(inflate)
-            selectedImageList.remove(alImages[folderPosition].imagePath[position])
+            updateTxtTotalImage()
+            selectedImageList.add(alImages[folderPosition].imagePath[position])
+            val inflate = LayoutInflater.from(this).inflate(R.layout.selected_images, null, false)
+            val imageView = inflate.selectedImages
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+            inflate.imageView_delete.setOnClickListener {
 
+                selected_image_linear.removeView(inflate)
+                selectedImageList.remove(alImages[folderPosition].imagePath[position])
+
+            }
+            Glide.with(this).load(alImages[folderPosition].imagePath[position])
+                .placeholder(R.drawable.piclist_icon_default).into(imageView)
+            selected_image_linear.addView(inflate)
+
+            sendScroll()
+        }else{
+            Toast.makeText(this@MainActivity,"Limit 9 images",Toast.LENGTH_SHORT).show()
         }
-        Glide.with(this).load(alImages[folderPosition].imagePath[position])
-            .placeholder(R.drawable.piclist_icon_default).into(imageView)
-
-        selected_image_linear.addView(inflate)
-        sendScroll()
     }
+
 
     private fun updateTxtTotalImage() {
         gallery_max.setText(

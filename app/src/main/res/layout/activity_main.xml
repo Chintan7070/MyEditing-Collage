@@ -98,7 +98,7 @@
             android:drawablePadding="@dimen/_7sdp"
             android:gravity="center_vertical"
             android:onClick="myClickHandler"
-            android:text="(0)"
+            android:text=""
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_toEndOf="@id/gallery_delete_all"
             android:gravity="center_vertical"
-            android:text="0"
+            android:text=""
             android:textColor="@color/white" />
 
         <TextView

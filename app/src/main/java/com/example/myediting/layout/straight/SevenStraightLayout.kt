@@ -7,7 +7,7 @@ import com.xiaopo.flying.puzzle.Line
  */
 class SevenStraightLayout(theme: Int) : NumberStraightLayout(theme) {
     override val themeCount: Int
-        get() = 9
+        get() = 10
 
     override fun layout() {
         when (theme) {

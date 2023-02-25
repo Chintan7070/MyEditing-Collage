@@ -1,5 +1,6 @@
 package com.example.myediting
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -36,7 +37,6 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var bitmapPaint: List<String>
 
     private var puzzleView: PuzzleView? = null
-    private val degreeSeekBar: DegreeSeekBar? = null
     private var controlFlag = 0
 
     var FLAG_CONTROL_LINE_SIZE = 1
@@ -59,9 +59,11 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
         deviceWidth = resources.displayMetrics.widthPixels
 
 
+//        val type = 0
         val type = getIntent().getIntExtra("type", 0)
         val pieceSize: Int = bitmapPaint.size
-        val themeId = getIntent().getIntExtra("theme_id", 0)
+        val themeId = 1
+//        val themeId = getIntent().getIntExtra("theme_id", 0)
         //bitmapPaint = getIntent().getStringArrayListExtra("photo_path");
         //bitmapPaint = getIntent().getStringArrayListExtra("photo_path");
         Log.e(TAG, "onCreate: Type : = $type---- Picee_size:=$pieceSize ------theme:= $themeId")
@@ -204,6 +206,7 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun initView() {
         val btnBack = findViewById<View>(R.id.btn_back) as ImageView
         btnBack.setOnClickListener { onBackPressed() }
@@ -222,7 +225,7 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
         puzzleView!!.isTouchEnable = true
         puzzleView!!.isNeedDrawLine = false
         puzzleView!!.isNeedDrawOuterLine = false
-        puzzleView!!.lineSize = 4
+        puzzleView!!.lineSize = 10
         puzzleView!!.lineColor = Color.BLACK
         puzzleView!!.selectedLineColor = Color.BLACK
         puzzleView!!.handleBarColor = Color.BLACK
@@ -263,12 +266,11 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
                         Snackbar.make(view, R.string.prompt_save_failed, Snackbar.LENGTH_SHORT)
                             .show()
                     }
-
                 })
         }
-        degree_seek_bar.setCurrentDegrees(puzzleView!!.lineSize)
-        degree_seek_bar.setDegreeRange(0, 30)
-        degree_seek_bar.setScrollingListener(object : DegreeSeekBar.ScrollingListener {
+        degreeSeekBar.setCurrentDegrees(puzzleView!!.lineSize)
+        degreeSeekBar.setDegreeRange(0, 30)
+        degreeSeekBar.setScrollingListener(object : DegreeSeekBar.ScrollingListener {
             override fun onScrollStart() {}
             override fun onScroll(currentDegrees: Int) {
                 when (controlFlag) {

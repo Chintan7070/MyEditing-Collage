@@ -66,7 +66,7 @@
         app:radian="30" />
 
     <com.example.myediting.forneededcollage.DegreeSeekBar
-        android:id="@+id/degree_seek_bar"
+        android:id="@+id/degreeSeekBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
