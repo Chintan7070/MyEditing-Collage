@@ -9,6 +9,9 @@ class SevenStraightLayout(theme: Int) : NumberStraightLayout(theme) {
     override val themeCount: Int
         get() = 10
 
+    companion object {
+        var themeCount: Int = 10
+    }
     override fun layout() {
         when (theme) {
             0 -> {

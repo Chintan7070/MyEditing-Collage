@@ -6,8 +6,14 @@ import com.xiaopo.flying.puzzle.Line
  * @author wupanjie
  */
 class ThreeSlantLayout(theme: Int) : NumberSlantLayout(theme) {
+    companion object{
+        val themeCount: Int
+            get() = 6
+    }
+
     override val themeCount: Int
         get() = 6
+
 
     override fun layout() {
         when (theme) {

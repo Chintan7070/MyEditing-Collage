@@ -6,6 +6,10 @@ import com.xiaopo.flying.puzzle.Line
  * @author wupanjie
  */
 class FourStraightLayout(theme: Int) : NumberStraightLayout(theme) {
+    companion object{
+        val themeCount: Int = 8
+            private const val TAG = "FourStraightLayout"
+    }
     override val themeCount: Int
         get() = 8
 
@@ -39,7 +43,5 @@ class FourStraightLayout(theme: Int) : NumberStraightLayout(theme) {
         }
     }
 
-    companion object {
-        private const val TAG = "FourStraightLayout"
-    }
+
 }

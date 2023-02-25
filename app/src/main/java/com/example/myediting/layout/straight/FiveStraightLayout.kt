@@ -8,6 +8,10 @@ import com.xiaopo.flying.puzzle.Line
 class FiveStraightLayout(theme: Int) : NumberStraightLayout(theme) {
     override val themeCount: Int
         get() = 17
+    companion object {
+         var themeCount: Int = 7
+    }
+
 
     override fun layout() {
         when (theme) {

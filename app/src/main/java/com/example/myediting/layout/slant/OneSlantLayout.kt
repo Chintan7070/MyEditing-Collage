@@ -9,6 +9,11 @@ class OneSlantLayout(theme: Int) : NumberSlantLayout(theme) {
     override val themeCount: Int
         get() = 4
 
+    companion object{
+        val themeCount: Int
+            get() = 4
+    }
+
     override fun layout() {
         when (theme) {
             0 -> addLine(0, Line.Direction.HORIZONTAL, 0.56f, 0.44f)

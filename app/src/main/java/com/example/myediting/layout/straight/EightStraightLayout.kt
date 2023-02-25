@@ -9,6 +9,10 @@ class EightStraightLayout(theme: Int) : NumberStraightLayout(theme) {
     override val themeCount: Int
         get() = 11
 
+    companion object {
+        var themeCount: Int = 11
+    }
+
     override fun layout() {
         when (theme) {
             0 -> cutAreaEqualPart(0, 3, 1)

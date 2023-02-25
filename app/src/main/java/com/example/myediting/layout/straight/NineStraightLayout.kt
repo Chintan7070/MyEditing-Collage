@@ -8,7 +8,9 @@ import com.xiaopo.flying.puzzle.Line
 class NineStraightLayout(theme: Int) : NumberStraightLayout(theme) {
     override val themeCount: Int
         get() = 8
-
+    companion object {
+        var themeCount: Int = 8
+    }
     override fun layout() {
         when (theme) {
             0 -> cutAreaEqualPart(0, 2, 2)

@@ -59,7 +59,7 @@
 
 
     <com.xiaopo.flying.puzzle.SquarePuzzleView
-        android:id="@+id/puzzle_view"
+        android:id="@+id/puzzleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
@@ -73,7 +73,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:visibility="invisible"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -82,9 +82,9 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -235,5 +235,31 @@
 
     </HorizontalScrollView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6A6A6A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingBottom="@dimen/_3sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:id="@+id/rvView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

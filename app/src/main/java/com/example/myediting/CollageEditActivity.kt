@@ -12,10 +12,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.bumptech.glide.Glide
+import com.example.myediting.adapter.CollageTheamAdapter
 import com.example.myediting.forneededcollage.DegreeSeekBar
 import com.example.myediting.forneededcollage.FileUtils
 import com.example.myediting.forneededcollage.PuzzleUtils
+import com.example.myediting.utils.ClickInterface
 import com.example.myediting.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Callback
@@ -74,7 +78,32 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
 
         puzzleView!!.post { loadPhoto() }
 
+        loadAdapterTheam(bitmapPaint as ArrayList<String>,type, pieceSize, themeId)
 
+    }
+
+    private fun loadAdapterTheam(
+        bitmapPaint: ArrayList<String>,
+        type: Int,
+        pieceSize: Int,
+        themeId: Int
+    ) {
+        val adapter = CollageTheamAdapter(this,bitmapPaint,type, pieceSize, themeId,object : ClickInterface{
+            override fun folderClick(position: Int, imagePath: java.util.ArrayList<String>) {
+            }
+
+            override fun imageClick(folderPosition: Int, position: Int) {
+                Log.e(TAG, "imageClick: Them number =: $position")
+                puzzleLayout = PuzzleUtils.getPuzzleLayout(type, pieceSize, position)
+                initView()
+                puzzleView!!.post { loadPhoto() }
+
+            }
+
+        })
+        val lm = LinearLayoutManager(this, HORIZONTAL, false)
+        rvView.layoutManager = lm
+        rvView.adapter = adapter;
     }
 
     override fun onResume() {
@@ -216,7 +245,7 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
              @Override public void onClick(View view) {
                  share();
              }
-         });*/puzzleView = findViewById<View>(R.id.puzzle_view) as PuzzleView
+         });*/puzzleView = findViewById<View>(R.id.puzzleView) as PuzzleView
 
         //degree_seek_bar = findViewById<View>(R.id.degree_seek_bar) as degree_seek_bar
 
@@ -240,6 +269,7 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
 
         // currently the SlantPuzzleLayout do not support padding
         puzzleView!!.piecePadding = 10f
+
         val btnReplace = findViewById<View>(R.id.btn_replace) as ImageView
         val btnRotate = findViewById<View>(R.id.btn_rotate) as ImageView
         val btnFlipHorizontal = findViewById<View>(R.id.btn_flip_horizontal) as ImageView

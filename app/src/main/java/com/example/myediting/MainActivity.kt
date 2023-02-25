@@ -245,21 +245,19 @@ class MainActivity : AppCompatActivity() {
     ) {
         if (selectedImageList.size <= 8){
 
-            updateTxtTotalImage()
             selectedImageList.add(alImages[folderPosition].imagePath[position])
             val inflate = LayoutInflater.from(this).inflate(R.layout.selected_images, null, false)
             val imageView = inflate.selectedImages
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             inflate.imageView_delete.setOnClickListener {
-
                 selected_image_linear.removeView(inflate)
                 selectedImageList.remove(alImages[folderPosition].imagePath[position])
-
+                updateTxtTotalImage()
             }
             Glide.with(this).load(alImages[folderPosition].imagePath[position])
                 .placeholder(R.drawable.piclist_icon_default).into(imageView)
             selected_image_linear.addView(inflate)
-
+            updateTxtTotalImage()
             sendScroll()
         }else{
             Toast.makeText(this@MainActivity,"Limit 9 images",Toast.LENGTH_SHORT).show()
