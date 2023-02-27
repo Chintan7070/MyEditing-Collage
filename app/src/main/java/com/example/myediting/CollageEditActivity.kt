@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -267,6 +268,14 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
             ).show()
         })
 
+        this.puzzleView!!.setOnPieceUnSelectedListener {
+            Snackbar.make(
+                puzzleView!!,
+                "Piece  Unselected",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+
         // currently the SlantPuzzleLayout do not support padding
         puzzleView!!.piecePadding = 10f
 
@@ -360,6 +369,8 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
             val target: Target = object : Target {
                 override fun onBitmapLoaded(bitmap: Bitmap, from: LoadedFrom) {
                     puzzleView!!.replace(bitmap, "")
+                    Snackbar.make(puzzleView!!, "Replace Failed!", Snackbar.LENGTH_SHORT).show()
+
                 }
 
                 override fun onBitmapFailed(errorDrawable: Drawable?) {
@@ -384,7 +395,10 @@ open class CollageEditActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
 
         when (view!!.getId()) {
-            R.id.btn_replace -> {}
+            R.id.btn_replace -> {
+
+
+            }
             R.id.btn_rotate -> puzzleView!!.rotate(90f)
             R.id.btn_flip_horizontal -> puzzleView!!.flipHorizontally()
             R.id.btn_flip_vertical -> puzzleView!!.flipVertically()

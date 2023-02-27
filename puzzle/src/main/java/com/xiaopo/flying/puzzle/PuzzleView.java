@@ -27,6 +27,7 @@ import java.util.Map;
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class PuzzleView extends View {
   private static final String TAG = "PuzzleView";
+  private OnPieceUnSelectedListener onPieceUnSelectedListener;
 
   private enum ActionMode {
     NONE, DRAG, ZOOM, MOVE, SWAP
@@ -464,7 +465,16 @@ public class PuzzleView extends View {
           previousHandlingPiece = null;
         }
         break;
+
     }
+
+    if (this.handlingPiece != null && this.onPieceSelectedListener != null) {
+      this.onPieceSelectedListener.onPieceSelected(this.handlingPiece, this.puzzlePieces.indexOf(this.handlingPiece));
+    } else if (this.handlingPiece == null && this.onPieceUnSelectedListener != null) {
+      this.onPieceUnSelectedListener.onPieceUnSelected();
+    }
+    this.handlingLine = null;
+    this.needChangePieces.clear();
 
     // trigger listener
     if (handlingPiece != null && onPieceSelectedListener != null) {
@@ -940,7 +950,16 @@ public class PuzzleView extends View {
     this.onPieceSelectedListener = onPieceSelectedListener;
   }
 
+  public void setOnPieceUnSelectedListener(OnPieceUnSelectedListener onPieceUnSelectedListener2) {
+    this.onPieceUnSelectedListener = onPieceUnSelectedListener2;
+  }
+
   public interface OnPieceSelectedListener {
     void onPieceSelected(PuzzlePiece piece, int position);
   }
+
+  public interface OnPieceUnSelectedListener {
+    void onPieceUnSelected();
+  }
+
 }
